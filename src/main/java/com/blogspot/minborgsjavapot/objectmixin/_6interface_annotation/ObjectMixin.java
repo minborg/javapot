@@ -93,7 +93,7 @@ public interface ObjectMixin<T extends ObjectMixin<T>> {
 
     static abstract class MethodUtil {
 
-        public static <T extends ObjectMixin> Class<T> defaultBaseCompareObjectMixinClass(Class<T> clazz) {
+        public static <T extends ObjectMixin<T>> Class<T> defaultBaseCompareObjectMixinClass(Class<T> clazz) {
             final Class<? super T> superClazz = clazz.getSuperclass();
             if (!ObjectMixin.class.isAssignableFrom(superClazz)) {
                 return clazz;

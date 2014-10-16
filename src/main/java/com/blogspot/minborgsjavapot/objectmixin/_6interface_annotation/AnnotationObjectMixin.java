@@ -1,6 +1,7 @@
 package com.blogspot.minborgsjavapot.objectmixin._6interface_annotation;
 
 import com.blogspot.minborgsjavapot.objectmixin._7interface_reflection.performance.ReflectionObjectMixin;
+import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -53,14 +54,14 @@ public interface AnnotationObjectMixin<T extends AnnotationObjectMixin<T>> exten
 
         public static final String INGRESS = "get";
         private final Class<?> clazz;
-        private final Class annotationClass;
+        private final Class<? extends Annotation> annotationClass;
 
-        private MethodUtil(Class<?> clazz, Class annotationClass) {
+        private MethodUtil(Class<?> clazz, Class<? extends Annotation> annotationClass) {
             this.clazz = clazz;
             this.annotationClass = annotationClass;
         }
 
-        private static List<Method> obtainGetMethods(Class<?> clazz, Class annotationClass) {
+        private static List<Method> obtainGetMethods(Class<?> clazz, Class<? extends Annotation> annotationClass) {
             final List<Method> result = new ArrayList<>();
             final Method[] methods = clazz.getMethods();
             for (final Method method : methods) {
