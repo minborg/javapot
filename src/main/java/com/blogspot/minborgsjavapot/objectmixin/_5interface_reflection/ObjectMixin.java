@@ -17,6 +17,7 @@ public interface ObjectMixin<T extends ObjectMixin<T>> {
 
     Comparable<?>[] compareToMembers();
 
+    @SuppressWarnings("unchecked")
     default Class<? extends ObjectMixin<T>> compareClass() {
         return MethodUtil.defaultBaseCompareObjectMixinClass((Class<T>) getClass());
     }
