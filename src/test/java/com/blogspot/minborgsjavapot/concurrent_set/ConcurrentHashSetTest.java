@@ -27,7 +27,7 @@ import static org.junit.Assert.*;
  */
 public class ConcurrentHashSetTest {
 
-    private static final Set<String> TEST_SET = Collections.unmodifiableSet(new HashSet(Arrays.asList("A", "B", "C")));
+    private static final Set<String> TEST_SET = Collections.unmodifiableSet(new HashSet<>(Arrays.asList("A", "B", "C")));
 
     public ConcurrentHashSetTest() {
     }
@@ -54,7 +54,7 @@ public class ConcurrentHashSetTest {
     @Test
     public void testClear() {
         System.out.println("clear");
-        ConcurrentHashSet instance = new ConcurrentHashSet();
+        ConcurrentHashSet<String> instance = new ConcurrentHashSet<>();
         instance.add("A");
         assertFalse(instance.isEmpty());
         instance.clear();
@@ -67,7 +67,7 @@ public class ConcurrentHashSetTest {
     @Test
     public void testSize() {
         System.out.println("size");
-        ConcurrentHashSet instance = new ConcurrentHashSet();
+        ConcurrentHashSet<String> instance = new ConcurrentHashSet<>();
         assertEquals(0, instance.size());
         instance.add("A");
         assertEquals(1, instance.size());
@@ -81,7 +81,7 @@ public class ConcurrentHashSetTest {
     @Test
     public void testIsEmpty() {
         System.out.println("isEmpty");
-        ConcurrentHashSet instance = new ConcurrentHashSet();
+        ConcurrentHashSet<String> instance = new ConcurrentHashSet<>();
         assertTrue(instance.isEmpty());
         instance.add("A");
         assertFalse(instance.isEmpty());
@@ -95,7 +95,7 @@ public class ConcurrentHashSetTest {
     @Test
     public void testContains() {
         System.out.println("contains");
-        ConcurrentHashSet instance = new ConcurrentHashSet();
+        ConcurrentHashSet<String> instance = new ConcurrentHashSet<>();
         instance.add("A");
         assertTrue(instance.contains("A"));
     }
@@ -107,7 +107,7 @@ public class ConcurrentHashSetTest {
     public void testRemove() {
         System.out.println("remove");
         Object o = null;
-        ConcurrentHashSet instance = new ConcurrentHashSet();
+        ConcurrentHashSet<String> instance = new ConcurrentHashSet<>();
         instance.add("A");
         assertFalse(instance.remove("B"));
         assertTrue(instance.remove("A"));
@@ -120,7 +120,7 @@ public class ConcurrentHashSetTest {
     @Test
     public void testAdd() {
         System.out.println("add");
-        ConcurrentHashSet instance = new ConcurrentHashSet();
+        ConcurrentHashSet<String> instance = new ConcurrentHashSet<>();
         assertTrue(instance.add("A"));
         assertFalse(instance.add("A"));
     }
@@ -131,10 +131,10 @@ public class ConcurrentHashSetTest {
     @Test
     public void testIterator() {
         System.out.println("iterator");
-        ConcurrentHashSet instance = new ConcurrentHashSet();
+        ConcurrentHashSet<String> instance = new ConcurrentHashSet<>();
         instance.addAll(TEST_SET);
-        Iterator iterator = instance.iterator();
-        Set collectedItems = new HashSet();
+        Iterator<String> iterator = instance.iterator();
+        Set<String> collectedItems = new HashSet<>();
         while (iterator.hasNext()) {
             collectedItems.add(iterator.next());
         }
@@ -145,13 +145,15 @@ public class ConcurrentHashSetTest {
      * Test of toArray method, of class ConcurrentHashSet.
      */
     @Test
+    @SuppressWarnings("rawtypes")
     public void testToArray_0args() {
         System.out.println("toArray");
-        ConcurrentHashSet instance = new ConcurrentHashSet();
+        ConcurrentHashSet<String> instance = new ConcurrentHashSet<>();
         instance.addAll(TEST_SET);
         Object[] resultArray = instance.toArray();
         // The oder is undefined... So we can use Set to test equality
-        Set result = new HashSet(Arrays.asList(resultArray));
+        @SuppressWarnings("unchecked")
+        Set<String> result = new HashSet(Arrays.asList(resultArray));
         assertEquals(TEST_SET, result);
     }
 
@@ -161,12 +163,12 @@ public class ConcurrentHashSetTest {
     @Test
     public void testToArray_GenericType() {
         System.out.println("toArray");
-        Object[] a = new Object[1];
-        ConcurrentHashSet instance = new ConcurrentHashSet();
+        String[] a = new String[1];
+        ConcurrentHashSet<String> instance = new ConcurrentHashSet<>();
         instance.addAll(TEST_SET);
-        Object[] resultArray = instance.toArray(a);
+        String[] resultArray = instance.toArray(a);
         // The oder is undefined... So we can use Set to test equality
-        Set result = new HashSet(Arrays.asList(resultArray));
+        Set<String> result = new HashSet<>(Arrays.asList(resultArray));
         assertEquals(TEST_SET, result);
     }
 
@@ -176,7 +178,7 @@ public class ConcurrentHashSetTest {
     @Test
     public void testToString() {
         System.out.println("toString");
-        ConcurrentHashSet instance = new ConcurrentHashSet();
+        ConcurrentHashSet<String> instance = new ConcurrentHashSet<>();
         instance.addAll(TEST_SET);
         String result = instance.toString();
         for (String s : TEST_SET) {
@@ -190,7 +192,7 @@ public class ConcurrentHashSetTest {
     @Test
     public void testHashCode() {
         System.out.println("hashCode");
-        ConcurrentHashSet instance = new ConcurrentHashSet();
+        ConcurrentHashSet<String> instance = new ConcurrentHashSet<>();
         instance.addAll(TEST_SET);
         assertEquals(TEST_SET.hashCode(), instance.hashCode());
     }
@@ -202,7 +204,7 @@ public class ConcurrentHashSetTest {
     public void testEquals() {
         System.out.println("equals");
         Object o = null;
-        ConcurrentHashSet instance = new ConcurrentHashSet();
+        ConcurrentHashSet<String> instance = new ConcurrentHashSet<>();
         instance.addAll(TEST_SET);
         assertEquals(TEST_SET, instance);
         instance.add("qwerty");
@@ -215,7 +217,7 @@ public class ConcurrentHashSetTest {
     @Test
     public void testContainsAll() {
         System.out.println("containsAll");
-        ConcurrentHashSet instance = new ConcurrentHashSet(TEST_SET);
+        ConcurrentHashSet<String> instance = new ConcurrentHashSet<>(TEST_SET);
         assertTrue(instance.containsAll(TEST_SET));
         instance.add("qwerty");
         assertTrue(instance.containsAll(TEST_SET));
@@ -227,10 +229,10 @@ public class ConcurrentHashSetTest {
     @Test
     public void testRemoveAll() {
         System.out.println("removeAll");
-        ConcurrentHashSet instance = new ConcurrentHashSet();
+        ConcurrentHashSet<String> instance = new ConcurrentHashSet<>();
         instance.addAll(Arrays.asList("A", "B", "C", "D", "E"));
         assertTrue(instance.removeAll(Arrays.asList("A", "C", "E")));
-        assertEquals(new HashSet(Arrays.asList("B", "D")), instance);
+        assertEquals(new HashSet<>(Arrays.asList("B", "D")), instance);
         assertFalse(instance.removeAll(Arrays.asList("A", "C", "E")));
     }
 
@@ -240,10 +242,10 @@ public class ConcurrentHashSetTest {
     @Test
     public void testRetainAll() {
         System.out.println("retainAll");
-        ConcurrentHashSet instance = new ConcurrentHashSet();
+        ConcurrentHashSet<String> instance = new ConcurrentHashSet<>();
         instance.addAll(Arrays.asList("A", "B", "C", "D", "E"));
         assertTrue(instance.retainAll(Arrays.asList("B", "D")));
-        assertEquals(new HashSet(Arrays.asList("B", "D")), instance);
+        assertEquals(new HashSet<>(Arrays.asList("B", "D")), instance);
         assertFalse(instance.retainAll(Arrays.asList("B", "D")));
     }
 
@@ -253,7 +255,7 @@ public class ConcurrentHashSetTest {
     @Test
     public void testAddAll() {
         System.out.println("addAll");
-        ConcurrentHashSet instance = new ConcurrentHashSet();
+        ConcurrentHashSet<String> instance = new ConcurrentHashSet<>();
         assertTrue(instance.addAll(TEST_SET));
         assertEquals(TEST_SET, instance);
         assertFalse(instance.addAll(TEST_SET));
@@ -266,7 +268,7 @@ public class ConcurrentHashSetTest {
     public void testAddIfAbsent() {
         System.out.println("addIfAbsent");
         // Hard to test atomic operation...
-        ConcurrentHashSet instance = new ConcurrentHashSet();
+        ConcurrentHashSet<String> instance = new ConcurrentHashSet<>();
         assertTrue(instance.addIfAbsent("A"));
         assertFalse(instance.addIfAbsent("A"));
     }
@@ -277,8 +279,8 @@ public class ConcurrentHashSetTest {
     @Test
     public void testForEach() {
         System.out.println("forEach");
-        ConcurrentHashSet instance = new ConcurrentHashSet(TEST_SET);
-        final Set result = new HashSet<>();
+        ConcurrentHashSet<String> instance = new ConcurrentHashSet<>(TEST_SET);
+        final Set<String> result = new HashSet<>();
         instance.forEach((e) -> result.add(e));
         assertEquals(TEST_SET, result);
     }
@@ -289,7 +291,7 @@ public class ConcurrentHashSetTest {
     @Test
     public void testRemoveIf() {
         System.out.println("removeIf");
-        ConcurrentHashSet<String> instance = new ConcurrentHashSet(TEST_SET);
+        ConcurrentHashSet<String> instance = new ConcurrentHashSet<>(TEST_SET);
         instance.add("qwerty");
         instance.removeIf((e) -> !TEST_SET.contains(e));
         assertEquals(TEST_SET, instance);
@@ -301,9 +303,9 @@ public class ConcurrentHashSetTest {
     @Test
     public void testSpliterator() {
         System.out.println("spliterator");
-        ConcurrentHashSet instance = new ConcurrentHashSet(TEST_SET);
-        Spliterator result = instance.spliterator();
-        Set resultSet = new HashSet();
+        ConcurrentHashSet<String> instance = new ConcurrentHashSet<>(TEST_SET);
+        Spliterator<String> result = instance.spliterator();
+        Set<String> resultSet = new HashSet<>();
         result.forEachRemaining((o) -> resultSet.add(o));
         assertEquals(TEST_SET, resultSet);
     }
@@ -314,9 +316,9 @@ public class ConcurrentHashSetTest {
     @Test
     public void testStream() {
         System.out.println("stream");
-        ConcurrentHashSet instance = new ConcurrentHashSet(TEST_SET);
-        Stream result = instance.stream();
-        Set resultSet = new HashSet();
+        ConcurrentHashSet<String> instance = new ConcurrentHashSet<>(TEST_SET);
+        Stream<String> result = instance.stream();
+        Set<String> resultSet = new HashSet<>();
         result.forEach((o) -> resultSet.add(o));
         assertEquals(TEST_SET, resultSet);
     }
@@ -327,9 +329,9 @@ public class ConcurrentHashSetTest {
     @Test
     public void testParallelStream() {
         System.out.println("parallelStream");
-        ConcurrentHashSet instance = new ConcurrentHashSet(TEST_SET);
-        Stream result = instance.parallelStream();
-        Set resultSet = new HashSet();
+        ConcurrentHashSet<String> instance = new ConcurrentHashSet<>(TEST_SET);
+        Stream<String> result = instance.parallelStream();
+        Set<String> resultSet = new HashSet<>();
         result.forEach((o) -> resultSet.add(o));
         assertEquals(TEST_SET, resultSet);
     }
@@ -337,11 +339,11 @@ public class ConcurrentHashSetTest {
     @Test
     public void testConstructorProvider() {
         System.out.println("testConstructorProvider");
-        ConcurrentHashSet instance = new ConcurrentHashSet(ConcurrentSkipListMap::new);
+        ConcurrentHashSet<String> instance = new ConcurrentHashSet<String>(ConcurrentSkipListMap::new);
         instance.add("C");
         instance.add("A");
         instance.add("B");
         assertEquals(Arrays.asList("A", "B", "C"), Arrays.asList(instance.toArray()));
     }
-    
+
 }

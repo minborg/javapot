@@ -17,7 +17,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Map<String, Boolean> concurrentMap = new ConcurrentHashMap();
+        Map<String, Boolean> concurrentMap = new ConcurrentHashMap<>();
         Set<String> concurrentSet = Collections.newSetFromMap(concurrentMap);
 
         Set<String> conSet = Collections.newSetFromMap(new ConcurrentHashMap<String, Boolean>());
@@ -34,13 +34,13 @@ public class Main {
 
         System.out.println(set);
 
-        final ConcurrentSet listSet = new ConcurrentHashSet(ConcurrentSkipListMap::new);
+        final ConcurrentSet<String> listSet = new ConcurrentHashSet<String>(ConcurrentSkipListMap::new);
         listSet.add("3");
         listSet.add("1");
         listSet.add("2");
         System.out.println(listSet);
 
-        final Set s = new ConcurrentHashSet();
+        final Set<String> s = new ConcurrentHashSet<>();
         System.out.println(s.addAll(characters));
         System.out.println(s.addAll(characters));
 
