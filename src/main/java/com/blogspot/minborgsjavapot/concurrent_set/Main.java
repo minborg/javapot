@@ -27,8 +27,8 @@ public class Main {
         final ConcurrentSet<String> set = new ConcurrentHashSet<>();
 
         set.add("Alice");
-        set.addIfAbsent("Bob");
-        set.addIfAbsent("Bob");
+        set.add("Bob");
+        set.add("Bob");
 
         set.addAll(characters);
 

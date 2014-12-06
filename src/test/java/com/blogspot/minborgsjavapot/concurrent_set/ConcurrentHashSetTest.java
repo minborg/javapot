@@ -261,17 +261,17 @@ public class ConcurrentHashSetTest {
         assertFalse(instance.addAll(TEST_SET));
     }
 
-    /**
-     * Test of addIfAbsent method, of class ConcurrentHashSet.
-     */
-    @Test
-    public void testAddIfAbsent() {
-        System.out.println("addIfAbsent");
-        // Hard to test atomic operation...
-        ConcurrentHashSet<String> instance = new ConcurrentHashSet<>();
-        assertTrue(instance.addIfAbsent("A"));
-        assertFalse(instance.addIfAbsent("A"));
-    }
+//    /**
+//     * Test of addIfAbsent method, of class ConcurrentHashSet.
+//     */
+//    @Test
+//    public void testAddIfAbsent() {
+//        System.out.println("addIfAbsent");
+//        // Hard to test atomic operation...
+//        ConcurrentHashSet<String> instance = new ConcurrentHashSet<>();
+//        assertTrue(instance.addIfAbsent("A"));
+//        assertFalse(instance.addIfAbsent("A"));
+//    }
 
     /**
      * Test of forEach method, of class ConcurrentHashSet.

@@ -85,8 +85,6 @@ public class ConcurrentHashSet<E> implements ConcurrentSet<E>, Serializable {
         return Objects.requireNonNull(c).stream().map((e) -> add(e)).filter((b)->b).count() > 0;
     }
 
-    @Override public boolean addIfAbsent(E e) { return m.putIfAbsent(e, Boolean.TRUE)==null;}
-
     // Override default methods in Collection
     @Override public void forEach(Consumer<? super E> action) { s.forEach(action);}
     @Override public boolean removeIf(Predicate<? super E> filter) { return s.removeIf(filter);}
