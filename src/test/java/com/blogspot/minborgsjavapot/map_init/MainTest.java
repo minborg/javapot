@@ -68,7 +68,7 @@ public class MainTest {
     public void test() {
         test(Main::imperative);
         test(Main::doubleBracket);
-        test(Main::builder);
+        test(Main::builderPattern);
         test(Main::concurrentBuilder);
         test(Main::stdJava8);
         test(Main::extJava8);
