@@ -16,10 +16,10 @@ public class HeapBenchmark {
     private static final int MAP_SIZE = 10000000;
 
     public static void main(String[] args) {
-        new Bench(HashMap::new).run();
+        new Bench(() -> new HashMap(MAP_SIZE)).run();
         new Bench(TreeMap::new).run();
-        new Bench(LinkedHashMap::new).run();
-        new Bench(ConcurrentHashMap::new).run();
+        new Bench(() -> new LinkedHashMap(MAP_SIZE)).run();
+        new Bench(() -> new ConcurrentHashMap(MAP_SIZE)).run();
         new Bench(() -> new IntArrayMap<>(0, MAP_SIZE)).run();
     }
 
