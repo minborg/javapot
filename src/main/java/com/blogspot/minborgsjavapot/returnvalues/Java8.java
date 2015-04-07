@@ -71,5 +71,16 @@ public class Java8 {
         return Stream.of("Hearts", "Spades", "Diamonds", "Clubs")
                 .collect(collectingAndThen(toSet(), Collections::unmodifiableSet));
     }
+    
+    public <T> Set<T> immutableSetOf(T... members) {
+        return Stream.of(members)
+                .collect(collectingAndThen(toSet(), Collections::unmodifiableSet));
+    }
 
+    
+    public Set<String> suitsSimple() {
+        return immutableSetOf("Hearts", "Spades", "Diamonds", "Clubs");
+    }
+
+    
 }
