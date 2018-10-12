@@ -1,7 +1,5 @@
 package com.blogspot.minborgsjavapot.insert_in_db;
 
-import com.company.speedment.test.javapot.JavapotApplication;
-import com.company.speedment.test.javapot.db0.javapot.country.Country;
 import com.speedment.Manager;
 import com.speedment.Speedment;
 import com.speedment.exception.SpeedmentException;
@@ -10,6 +8,8 @@ public class Main {
 
     public static void main(String[] args) {
         // Setup
+        /*
+
         Speedment speedment = new JavapotApplication().withPassword("javapot").build();
         Manager<Country> countries = speedment.managerOf(Country.class);
 
@@ -53,6 +53,7 @@ public class Main {
         } catch (SpeedmentException se) {
 
         }
+        */
     }
 
 }

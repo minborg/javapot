@@ -16,7 +16,6 @@
  */
 package com.blogspot.minborgsjavapot.insert_in_db;
 
-import com.speedment.internal.gui.MainApp;
 
 /**
  *
@@ -24,7 +23,7 @@ import com.speedment.internal.gui.MainApp;
  */
 public class Gui {
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         MainApp.main(args);
-    }
+    }*/
 }
